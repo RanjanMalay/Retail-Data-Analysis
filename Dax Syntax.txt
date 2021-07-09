@@ -1,0 +1,40 @@
+DAX Used-
+1.
+calendar table= 
+VAR dates =
+CALENDAR ( DATE ( 2010, 2, 5 ), DATE ( 2013, 10, 26 ) )
+VAR date_table_base =
+ADDCOLUMNS (
+dates,
+"Year", YEAR ( [Date] ),
+"Month", FORMAT ( [Date], "MMM" ),
+"MonthNO", MONTH ( [Date] ),
+"WeekNO", WEEKNUM ( [Date] ),
+"WeekDay", WEEKDAY ( [Date], 2 )
+)
+RETURN
+date_table_base
+
+2.
+Mark Down Across all Store = DIVIDE([Total mark down],CALCULATE([Total mark down],ALL('stores data-set'[Store])))
+
+3.
+Total mark down = SUMX('Features data set','Features data set'[MarkDown1]+'Features data set'[MarkDown2]+'Features data set'[MarkDown3]+'Features data set'[MarkDown4]+'Features data set'[MarkDown5])
+
+4.
+% Change in Sale = DIVIDE([Total Revenue],[Holiday Sales Analysis],0)
+
+5.
+Department Wise Sales = CALCULATE([Total Revenue],ALL('sales data-set'[Dept]))
+
+6.
+Holiday Sales = CALCULATE([Total Revenue],'Features data set'[IsHoliday]= "N")
+
+7.
+Holiday Sales Analysis = CALCULATE([Total Revenue],ALL('Features data set'[IsHoliday]))
+
+8.
+Revenue Across store = DIVIDE([Total Revenue],CALCULATE([Total Revenue],ALL('stores data-set'[Store])))
+
+9.
+Total Revenue = SUM('sales data-set'[Weekly_Sales])
